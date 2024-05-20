@@ -35,3 +35,43 @@ Vamos criar um NFT chamado "Paisagem Cósmica":
 5. **Marketing**: Compartilhe seu NFT em redes sociais e comunidades de arte digital para atrair atenção.
 
 Lembre-se de seguir as instruções e o passo a passo fornecidos pelo instrutor do seu curso para garantir que você esteja cumprindo todas as etapas corretamente.
+
+Vou criar um exemplo de código para um projeto de NFT que interage com a blockchain do Ethereum, que é semelhante à Polygon em termos de funcionalidade. Este exemplo será em Solidity, a linguagem de programação usada para escrever smart contracts para blockchains compatíveis com Ethereum.
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
+import "@openzeppelin/contracts/utils/Counters.sol";
+
+contract MeuNFT is ERC721URIStorage {
+    using Counters for Counters.Counter;
+    Counters.Counter private _tokenIds;
+
+    constructor() ERC721("MeuNFT", "MNFT") {}
+
+    function criarNFT(address destinatario, string memory tokenURI) public returns (uint256) {
+        _tokenIds.increment();
+
+        uint256 novoTokenId = _tokenIds.current();
+        _mint(destinatario, novoTokenId);
+        _setTokenURI(novoTokenId, tokenURI);
+
+        return novoTokenId;
+    }
+}
+```
+
+Este é um contrato inteligente básico que permite criar um NFT. Aqui está o que cada parte faz:
+- `import` traz o código de contratos inteligentes da biblioteca OpenZeppelin, que é um padrão seguro e comum para contratos ERC721.
+- `MeuNFT` é o nome do contrato inteligente.
+- `Counters.Counter` é uma maneira segura de manter um contador que rastreia o número de NFTs criados.
+- O construtor `constructor()` define o nome e o símbolo do seu NFT.
+- A função `criarNFT()` é chamada para criar um novo NFT. Ela aceita um endereço de destinatário e uma URI de token (que aponta para os metadados do NFT) e retorna um novo ID de token.
+
+Para usar este contrato, você precisaria:
+1. Implementar o contrato em uma rede de teste ou na rede principal da Polygon.
+2. Chamar a função `criarNFT()` com o endereço do destinatário e a URI dos metadados do seu NFT.
+
+Lembre-se, este é apenas um exemplo básico. Na prática, você precisará de mais funcionalidades e considerações de segurança.
