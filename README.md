@@ -1,4 +1,4 @@
-# Criando-um-NFT-na-Pr-tica
+# Criando-um-NFT-na-Pratica
 
 Vou detalhar esse projeto de criação de um NFT na prática, dividido em módulos:
 
